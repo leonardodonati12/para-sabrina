@@ -1,5 +1,4 @@
-﻿/* --- Configurações Gerais --- */
-body {
+﻿body {
     margin: 0;
     padding: 0;
     background-color: #f9f9f9;
@@ -16,9 +15,7 @@ body {
     align-items: center;
 }
 
-/* =========================================
-   CENTRO
-========================================= */
+/* --- CENTRO --- */
 .center-stage {
     position: relative;
     width: 85vmin;
@@ -26,13 +23,12 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    /* Adicionei um z-index menor pra garantir que os corações de giz fiquem na frente se passarem perto */
     z-index: 1;
 }
 
 .dancing-couple {
     position: absolute;
-    width: 45%;
+    width: 50%; /* Ajuste o tamanho do casal aqui se precisar */
     z-index: 2;
     pointer-events: none;
 }
@@ -69,132 +65,136 @@ body {
     }
 }
 
-/* =========================================
-   PERSONAGENS DISNEY
-========================================= */
+/* --- PERSONAGENS --- */
 .disney-char {
     position: absolute;
     z-index: 10;
-    bottom: 20px;
     pointer-events: none;
-    left: -250px;
+    bottom: 20px;
+    left: -300px; /* Escondidos inicialmente */
 }
 
+/* Tamanhos */
 .mickey-style {
-    width: 150px;
+    width: 130px;
     bottom: 40px;
     animation-delay: 0s;
 }
 
-.minnie-style {
-    width: 140px;
-    bottom: 30px;
-    animation-delay: 10s;
-}
-
 .donald-style {
-    width: 160px;
+    width: 140px;
     bottom: 25px;
     animation-delay: 20s;
 }
 
 .pluto-style {
-    width: 180px;
+    width: 150px;
     bottom: 20px;
     animation-delay: 30s;
 }
 
-/* 1. Esquerda -> Direita */
-.move-l-to-r {
-    animation: crossScreenCycle 40s linear infinite;
+/* Wrapper da Minnie pra controlar a posição melhor */
+.minnie-wrapper {
+    position: absolute;
+    bottom: 30px;
+    left: -200px;
+    width: 120px;
+    z-index: 11;
+    pointer-events: none;
+    animation: peekCycle 40s ease-in-out infinite;
+    animation-delay: 10s;
 }
 
-/* 2. Direita -> Esquerda (Espelhado) - Donald e Pluto */
+.disney-char-static {
+    width: 100%;
+}
+
+/* Animação Esquerda -> Direita (Mickey) */
+.move-l-to-r {
+    animation: crossScreen 40s linear infinite;
+}
+
+/* Animação Direita -> Esquerda (Donald e Pluto) */
 .move-r-to-l {
-    animation: crossScreenCycleReverse 40s linear infinite;
-    /* O transform scaleX(-1) faz o GIF virar pro outro lado (refletir) */
+    animation: crossScreenReverse 40s linear infinite;
+    /* O pulo do gato pro Donald não sumir: transform direto na classe */
     transform: scaleX(-1);
 }
 
-/* 3. Espreitar (Minnie) */
-.peek-animation {
-    animation: peekCycle 40s ease-in-out infinite;
-}
+/* KEYFRAMES */
 
-/* --- Keyframes --- */
-
-@keyframes crossScreenCycle {
+@keyframes crossScreen {
     0% {
-        left: -250px;
+        left: -300px;
     }
 
-    20% {
+    15% {
         left: 110vw;
     }
-
+    /* Atravessa */
     100% {
         left: 110vw;
     }
+    /* Espera */
 }
 
-/* Reverso: Começa na direita (110vw) e vai pra esquerda (-250px) */
-@keyframes crossScreenCycleReverse {
+@keyframes crossScreenReverse {
     0% {
         left: 110vw;
     }
-
-    20% {
-        left: -250px;
+    /* Começa na direita */
+    15% {
+        left: -300px;
     }
-
+    /* Vai pra esquerda */
     100% {
-        left: -250px;
+        left: -300px;
     }
+    /* Espera */
 }
 
+/* Ajuste Fino da Minnie (Feedback: Muito pra direita) */
 @keyframes peekCycle {
     0% {
-        left: -250px;
+        left: -200px;
     }
 
+    5% {
+        left: -40px;
+    }
+    /* Agora ela só mostra o narizinho e o laço */
     10% {
-        left: -10px;
+        left: -40px;
     }
-    /* Feedback 4: Minnie entra menos (antes era 50px) */
-    20% {
-        left: -10px;
+    /* Fica parada */
+    15% {
+        left: -200px;
     }
-
-    25% {
-        left: -250px;
-    }
-
+    /* Volta */
     100% {
-        left: -250px;
+        left: -200px;
     }
 }
 
-/* =========================================
-   RESTO (Corações Giz + Modal)
-========================================= */
+/* --- CORAÇÕES DE GIZ (Estático, sem girar) --- */
 .chalk-heart {
     position: absolute;
-    width: 90px;
-    height: 90px;
+    width: 80px;
+    height: 80px;
     background-image: url('img/coracao-giz.gif');
     background-size: contain;
     background-repeat: no-repeat;
     cursor: pointer;
     z-index: 20;
-    animation: popIn 0.4s ease-out;
+    animation: popIn 0.5s ease-out;
     filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.2));
-    /* Sem rotação aqui */
+    /* ZERO ROTAÇÃO */
+    transform: none !important;
 }
 
     .chalk-heart:hover {
-        transform: scale(1.1);
+        transform: scale(1.1) !important;
     }
-/* Só escala no hover */
 
 @keyframes popIn {
     0% {
@@ -208,6 +208,7 @@ body {
     }
 }
 
+/* MODAL */
 .modal {
     position: fixed;
     top: 0;
@@ -228,7 +229,8 @@ body {
 
 .polaroid-frame {
     background: #fffdf2;
-    padding: 15px 15px 60px 15px;
+    padding: 15px;
+    padding-bottom: 60px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.5);
     transform: rotate(-2deg);
     max-width: 85%;
@@ -237,9 +239,8 @@ body {
 .photo-crop {
     width: 300px;
     height: 300px;
-    overflow: hidden;
     background: #000;
-    border: 1px solid #ddd;
+    overflow: hidden;
 }
 
     .photo-crop img {

@@ -2,8 +2,8 @@
 body {
     margin: 0;
     padding: 0;
-    background-color: #f9f9f9; /* Fundo neutro */
-    overflow: hidden; /* Bloqueia barras de rolagem */
+    background-color: #f9f9f9;
+    overflow: hidden;
     font-family: 'Architects Daughter', cursive;
 }
 
@@ -17,12 +17,12 @@ body {
 }
 
 /* =========================================
-   CENTRO: Coração Trêmulo + Dança
+   CENTRO: Coração Parado + Tremido
 ========================================= */
 .center-stage {
     position: relative;
     width: 85vmin;
-    height: 85vmin; /* Tamanho responsivo */
+    height: 85vmin;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -30,7 +30,7 @@ body {
 
 .dancing-couple {
     position: absolute;
-    width: 45%; /* Ajuste aqui se o casal ficar grande/pequeno demais */
+    width: 45%;
     z-index: 2;
     pointer-events: none;
 }
@@ -39,32 +39,24 @@ body {
     position: absolute;
     width: 100%;
     height: 100%;
-    animation: slowSpin 35s linear infinite; /* Roda BEM devagar */
+    /* REMOVIDO: animation: slowSpin... (Agora ele não gira mais) */
 }
 
 .trembling-svg {
     width: 100%;
     height: 100%;
     overflow: visible;
-    /* Efeito de desenho feito a mão (trêmulo) */
+    /* Mantém só o tremido estilo desenho a mão */
     animation: doodleJitter 0.15s linear infinite alternate;
 }
 
-/* Estilo da Linha de Costura */
 .sewing-thread-line {
     fill: none;
-    stroke: #d32f2f; /* Vermelho Paixão */
+    stroke: #d32f2f;
     stroke-width: 6;
     stroke-linecap: round;
-    stroke-dasharray: 15 10; /* Tracejado */
+    stroke-dasharray: 15 10;
     filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.2));
-}
-
-/* Animações do Centro */
-@keyframes slowSpin {
-    to {
-        transform: rotate(360deg);
-    }
 }
 
 @keyframes doodleJitter {
@@ -78,122 +70,122 @@ body {
 }
 
 /* =========================================
-   PERSONAGENS DISNEY
+   PERSONAGENS DISNEY (Gigantes e Sequenciais)
 ========================================= */
 .disney-char {
     position: absolute;
     z-index: 10;
     bottom: 20px;
-    pointer-events: none; /* Não atrapalha o clique nos corações */
+    pointer-events: none;
+    left: -250px; /* Começam escondidos mais longe por serem maiores */
 }
 
-/* Tamanhos específicos para equilibrar */
+/* --- Tamanhos Aumentados (Feedback 2) --- */
 .mickey-style {
-    width: 90px;
+    width: 150px;
     bottom: 40px;
 }
 
 .minnie-style {
-    width: 80px;
+    width: 140px;
     bottom: 30px;
 }
 
 .donald-style {
-    width: 100px;
+    width: 160px;
     bottom: 25px;
 }
 
 .pluto-style {
-    width: 110px;
+    width: 180px;
     bottom: 20px;
 }
 
-/* Tipos de Movimento */
 
-/* 1. Atravessa: Esquerda -> Direita */
+/* --- Lógica de Sequência (Feedback 5) --- 
+   Ciclo Total: 40 segundos para todos.
+   Cada um tem seu "momento" de entrar via animation-delay.
+*/
+
+/* 1. Atravessar a Tela (Mickey, Donald, Pluto) */
 .move-l-to-r {
-    left: -150px;
-    animation: walkLtoR 18s linear infinite;
+    animation: crossScreenCycle 40s linear infinite;
 }
 
-/* 2. Atravessa: Direita -> Esquerda (Espelhado) */
-.move-r-to-l {
-    left: 100vw;
-    transform: scaleX(-1); /* Espelha para olhar pra esquerda */
+/* 2. Espreitar (Minnie) */
+.peek-animation {
+    animation: peekCycle 40s ease-in-out infinite;
 }
 
+/* --- Delays para organizar a fila --- */
+.mickey-style {
+    animation-delay: 0s;
+}
+/* Começa na hora */
+.minnie-style {
+    animation-delay: 10s;
+}
+/* Entra aos 10s */
 .donald-style {
-    animation: walkRtoL 10s linear infinite;
+    animation-delay: 20s;
 }
-/* Rápido */
+/* Entra aos 20s */
 .pluto-style {
-    animation: walkRtoL 22s linear infinite;
+    animation-delay: 30s;
 }
-/* Lento */
-.delay-pluto {
-    animation-delay: 5s;
-}
+/* Entra aos 30s */
 
-/* 3. Espreita (Peek): Só aparece na borda */
-.peek-left {
-    left: -150px;
-    animation: peekAndHide 15s ease-in-out infinite;
-    animation-delay: 2s;
-}
 
-/* Keyframes de Movimento */
-@keyframes walkLtoR {
+/* --- Keyframes do Ciclo --- */
+
+/* Atravessa da esquerda pra direita e depois espera */
+@keyframes crossScreenCycle {
     0% {
-        left: -150px;
+        left: -250px;
     }
-
-    100% {
-        left: 100vw;
-    }
-}
-
-@keyframes walkRtoL {
-    0% {
-        left: 100vw;
-    }
-
-    100% {
-        left: -150px;
-    }
-}
-
-@keyframes peekAndHide {
-    0% {
-        left: -150px;
-    }
-
+    /* Escondido */
     20% {
-        left: -20px;
+        left: 110vw;
     }
-    /* Entrou */
-    50% {
-        left: -20px;
-    }
-    /* Esperou */
-    70% {
-        left: -150px;
-    }
-    /* Saiu */
+    /* Atravessou a tela (rápido) */
     100% {
-        left: -150px;
+        left: 110vw;
     }
+    /* Fica esperando lá longe até o ciclo reiniciar */
 }
+
+/* Minnie aparece, olha e volta */
+@keyframes peekCycle {
+    0% {
+        left: -250px;
+    }
+
+    10% {
+        left: 50px;
+    }
+    /* Feedback 3: Entra mais na tela (antes era -20px) */
+    20% {
+        left: 50px;
+    }
+    /* Fica parada olhando */
+    25% {
+        left: -250px;
+    }
+    /* Vai embora */
+    100% {
+        left: -250px;
+    }
+    /* Espera */
+}
+
 
 /* =========================================
-   INTERATIVIDADE (Corações + Modal)
+   RESTO (Corações Giz + Modal - Mantém igual)
 ========================================= */
-
-/* Coração de Giz (Agora .GIF) */
 .chalk-heart {
     position: absolute;
-    width: 80px;
-    height: 80px;
-    /* AQUI ESTÁ A MUDANÇA PRO GIF */
+    width: 90px;
+    height: 90px; /* Um pouquinho maior tbm */
     background-image: url('img/coracao-giz.gif');
     background-size: contain;
     background-repeat: no-repeat;
@@ -219,7 +211,6 @@ body {
     }
 }
 
-/* Modal Polaroide */
 .modal {
     position: fixed;
     top: 0;
@@ -248,7 +239,7 @@ body {
 
 .photo-crop {
     width: 300px;
-    height: 300px; /* Quadrado perfeito */
+    height: 300px;
     overflow: hidden;
     background: #000;
     border: 1px solid #ddd;
@@ -257,7 +248,7 @@ body {
     .photo-crop img {
         width: 100%;
         height: 100%;
-        object-fit: cover; /* Foto preenche tudo sem distorcer */
+        object-fit: cover;
     }
 
 .chalk-text {

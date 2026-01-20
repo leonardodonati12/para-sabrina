@@ -1,9 +1,9 @@
 // LISTA DE FOTOS: Coloque aqui os nomes exatos das suas fotos na pasta img
 const photos = [
     'img/foto1.jpg',
-    'img/foto2.jpg',
+    'img/foto2.jpg',    
     'img/foto3.jpg',
-    // 'img/outra-foto.png',
+    // 'img/outra-foto.png', 
 ];
 
 // LEGENDAS: Na mesma ordem das fotos (opcional)

@@ -5,28 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Para Sá</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap" rel="stylesheet">
 </head>
 <body>
 
     <div class="game-container" id="gameArea">
 
-        <div class="center-piece">
-            <div class="stitched-heart"></div>
-            <div class="couple-orbit">
-                <img src="img/casal-desenho.png" alt="Nós" class="couple-img">
+        <div class="center-stage">
+            <img src="img/casal-dancando.gif" alt="Nós" class="dancing-couple">
+
+            <div class="spinning-heart-container">
+                <svg viewBox="0 0 600 600" class="trembling-svg">
+                    <defs>
+                        <path id="heartPath" d="M300,150 C190,30 50,150 50,280 C50,450 300,550 300,550 C300,550 550,450 550,280 C550,150 410,30 300,150 Z" />
+                    </defs>
+                    <use href="#heartPath" class="sewing-thread-line" />
+                </svg>
             </div>
         </div>
 
-        <img src="img/mickey.png" class="disney-char bottom-left" id="charLeft">
-        <img src="img/minnie.png" class="disney-char bottom-right" id="charRight">
+        <img src="img/mickey-andando.gif" class="disney-char move-l-to-r mickey-style">
+
+        <img src="img/minnie-peek.gif" class="disney-char peek-left minnie-style">
+
+        <img src="img/donald-correndo.gif" class="disney-char move-r-to-l donald-style">
+
+        <img src="img/pluto-andando.gif" class="disney-char move-r-to-l pluto-style delay-pluto">
 
     </div>
 
     <div id="polaroidModal" class="modal hidden">
         <div class="polaroid-frame">
-            <img id="polaroidImage" src="" alt="Momento">
-            <p id="polaroidDate" class="handwritten-text">Nossos momentos...</p>
+            <div class="photo-crop">
+                <img id="polaroidImage" src="" alt="Momento">
+            </div>
+            <p id="polaroidDate" class="chalk-text">Nossos momentos...</p>
         </div>
     </div>
 

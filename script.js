@@ -17,37 +17,35 @@ const polaroidImage = document.getElementById('polaroidImage');
 const polaroidDate = document.getElementById('polaroidDate');
 
 function spawnHeart() {
-    // 1. Limite Rígido: Apenas 2 corações por vez
+    // 1. Limite de 2 corações
     const currentHearts = document.querySelectorAll('.chalk-heart');
     if (currentHearts.length >= 2) return;
 
     const heart = document.createElement('div');
     heart.classList.add('chalk-heart');
 
-    // 2. Lógica das Zonas Laterais (Imagem 1)
-    // Vamos sortear: 0 = Esquerda, 1 = Direita
+    // 2. Zonas Laterais + Limite Inferior
     const zone = Math.random() < 0.5 ? 'left' : 'right';
-
     let x, y;
-    const padding = 50; // Margem da borda
-    const zoneWidth = window.innerWidth * 0.25; // A zona ocupa 25% da tela
+
+    const padding = 50;
+    const bottomLimitBuffer = 150; // AQUI: Sobe o limite inferior em 150px
+    const zoneWidth = window.innerWidth * 0.25;
 
     if (zone === 'left') {
-        // Gera X entre 50px e 25% da tela
         x = Math.random() * (zoneWidth - padding) + padding;
     } else {
-        // Gera X entre 75% da tela e a borda final
         x = (window.innerWidth - zoneWidth) + Math.random() * (zoneWidth - padding);
     }
 
-    // Y pode ser em qualquer altura (com margem)
-    y = Math.random() * (window.innerHeight - padding * 2) + padding;
+    // Calculo do Y considerando o novo limite inferior
+    // Altura útil = Altura Total - padding superior - padding inferior EXTRA
+    const usableHeight = window.innerHeight - padding - bottomLimitBuffer;
+    y = Math.random() * (usableHeight - padding) + padding;
 
     heart.style.left = `${x}px`;
     heart.style.top = `${y}px`;
-
-    // SEM ROTAÇÃO (Feedback enfático)
-    heart.style.transform = 'none';
+    heart.style.transform = 'none'; // Garante zero rotação
 
     heart.addEventListener('click', (e) => {
         e.stopPropagation();
@@ -57,7 +55,6 @@ function spawnHeart() {
 
     gameArea.appendChild(heart);
 
-    // Tempo de vida do coração
     setTimeout(() => {
         if (heart.parentElement) {
             heart.style.transition = "opacity 0.5s";
@@ -79,5 +76,4 @@ modal.addEventListener('click', () => {
     modal.classList.add('hidden');
 });
 
-// Tenta criar coração a cada 1 segundo
 setInterval(spawnHeart, 1000);

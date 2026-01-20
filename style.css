@@ -28,7 +28,7 @@
 
 .dancing-couple {
     position: absolute;
-    width: 50%; /* Ajuste o tamanho do casal aqui se precisar */
+    width: 50%;
     z-index: 2;
     pointer-events: none;
 }
@@ -71,7 +71,7 @@
     z-index: 10;
     pointer-events: none;
     bottom: 20px;
-    left: -300px; /* Escondidos inicialmente */
+    left: -300px;
 }
 
 /* Tamanhos */
@@ -93,7 +93,7 @@
     animation-delay: 30s;
 }
 
-/* Wrapper da Minnie pra controlar a posição melhor */
+/* Wrapper da Minnie (Para controlar o corte) */
 .minnie-wrapper {
     position: absolute;
     bottom: 30px;
@@ -109,19 +109,15 @@
     width: 100%;
 }
 
-/* Animação Esquerda -> Direita (Mickey) */
+/* Animações */
 .move-l-to-r {
     animation: crossScreen 40s linear infinite;
 }
 
-/* Animação Direita -> Esquerda (Donald e Pluto) */
 .move-r-to-l {
     animation: crossScreenReverse 40s linear infinite;
-    /* O pulo do gato pro Donald não sumir: transform direto na classe */
-    transform: scaleX(-1);
+    transform: scaleX(-1); /* Espelha Donald e Pluto */
 }
-
-/* KEYFRAMES */
 
 @keyframes crossScreen {
     0% {
@@ -131,29 +127,26 @@
     15% {
         left: 110vw;
     }
-    /* Atravessa */
+
     100% {
         left: 110vw;
     }
-    /* Espera */
 }
 
 @keyframes crossScreenReverse {
     0% {
         left: 110vw;
     }
-    /* Começa na direita */
+
     15% {
         left: -300px;
     }
-    /* Vai pra esquerda */
+
     100% {
         left: -300px;
     }
-    /* Espera */
 }
 
-/* Ajuste Fino da Minnie (Feedback: Muito pra direita) */
 @keyframes peekCycle {
     0% {
         left: -200px;
@@ -162,25 +155,26 @@
     5% {
         left: -40px;
     }
-    /* Agora ela só mostra o narizinho e o laço */
+    /* Narizinho apenas */
     10% {
         left: -40px;
     }
-    /* Fica parada */
+
     15% {
         left: -200px;
     }
-    /* Volta */
+
     100% {
         left: -200px;
     }
 }
 
-/* --- CORAÇÕES DE GIZ (Estático, sem girar) --- */
+/* --- CORAÇÕES DE GIZ --- */
 .chalk-heart {
     position: absolute;
     width: 80px;
     height: 80px;
+    /* Certifique-se que o nome do GIF do coração está assim na pasta img */
     background-image: url('img/coracao-giz.gif');
     background-size: contain;
     background-repeat: no-repeat;
@@ -188,8 +182,7 @@
     z-index: 20;
     animation: popIn 0.5s ease-out;
     filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.2));
-    /* ZERO ROTAÇÃO */
-    transform: none !important;
+    transform: none !important; /* Sem rotação */
 }
 
     .chalk-heart:hover {

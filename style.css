@@ -1,0 +1,173 @@
+﻿body {
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+    overflow: hidden; /* Evita barras de rolagem */
+    font-family: 'Indie Flower', cursive; /* Fonte com cara de mão */
+}
+
+.game-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* --- Coração Central Costurado --- */
+.center-piece {
+    position: relative;
+    width: 200px;
+    height: 200px;
+}
+
+.stitched-heart {
+    width: 100px;
+    height: 100px;
+    background-color: transparent;
+    border: 4px dashed #ff4d4d; /* Efeito Costura */
+    transform: rotate(45deg);
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.2);
+}
+
+    /* Criando o formato do coração com pseudo-elementos */
+    .stitched-heart::before,
+    .stitched-heart::after {
+        content: "";
+        width: 100px;
+        height: 100px;
+        border: 4px dashed #ff4d4d;
+        border-bottom: none;
+        border-right: none;
+        border-radius: 50%;
+        position: absolute;
+        background: white; /* Para esconder o miolo se precisar */
+    }
+
+    .stitched-heart::before {
+        top: -54px;
+        left: -4px;
+    }
+
+    .stitched-heart::after {
+        left: -54px;
+        top: -4px;
+    }
+
+/* --- Casal Girando --- */
+.couple-orbit {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    animation: spin 10s linear infinite;
+}
+
+.couple-img {
+    width: 60px; /* Tamanho do desenho */
+    position: absolute;
+    top: -30px; /* Ajuste para ficar 'orbitando' */
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* --- Corações "Toupeira" (Alvos) --- */
+.pop-heart {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="red"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>');
+    background-size: cover;
+    cursor: pointer;
+    animation: popIn 0.5s ease-out;
+    transition: transform 0.2s;
+}
+
+    .pop-heart:hover {
+        transform: scale(1.2);
+    }
+
+@keyframes popIn {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* --- Disney Characters --- */
+.disney-char {
+    position: absolute;
+    width: 120px;
+    bottom: -150px; /* Escondido inicialmente */
+    transition: bottom 1s ease-in-out;
+}
+
+.bottom-left {
+    left: 20px;
+}
+
+.bottom-right {
+    right: 20px;
+}
+
+.peek-up {
+    bottom: 0px;
+}
+/* Classe para fazer aparecer */
+
+/* --- Modal Polaroide --- */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+
+.hidden {
+    display: none;
+}
+
+.polaroid-frame {
+    background: white;
+    padding: 15px 15px 60px 15px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    transform: rotate(-3deg);
+    text-align: center;
+    max-width: 80%;
+}
+
+    .polaroid-frame img {
+        max-width: 100%;
+        max-height: 60vh;
+        border: 1px solid #ccc;
+    }
+
+.handwritten-text {
+    font-size: 1.5rem;
+    margin-top: 20px;
+    color: #333;
+}

@@ -1,4 +1,5 @@
-﻿body {
+﻿/* --- CSS (Estilos) --- */
+body {
     margin: 0;
     padding: 0;
     background-color: #f9f9f9;
@@ -15,7 +16,7 @@
     align-items: center;
 }
 
-/* --- CENTRO --- */
+/* CENTRO */
 .center-stage {
     position: relative;
     width: 85vmin;
@@ -23,13 +24,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1;
+    z-index: 10;
 }
 
 .dancing-couple {
     position: absolute;
     width: 50%;
-    z-index: 2;
+    z-index: 11;
     pointer-events: none;
 }
 
@@ -65,20 +66,37 @@
     }
 }
 
-/* --- PERSONAGENS --- */
+/* PERSONAGENS (Fundo) */
 .disney-char {
     position: absolute;
-    z-index: 10;
+    z-index: 5;
     pointer-events: none;
     bottom: 20px;
     left: -300px;
 }
 
-/* Tamanhos */
+.minnie-wrapper {
+    position: absolute;
+    bottom: 30px;
+    left: -200px;
+    width: 120px;
+    z-index: 6;
+    pointer-events: none;
+}
+
+.disney-char-static {
+    width: 100%;
+}
+
+/* Animações 40s */
 .mickey-style {
     width: 130px;
     bottom: 40px;
     animation-delay: 0s;
+}
+
+.minnie-style {
+    animation-delay: 10s;
 }
 
 .donald-style {
@@ -93,30 +111,17 @@
     animation-delay: 30s;
 }
 
-/* Wrapper da Minnie (Para controlar o corte) */
-.minnie-wrapper {
-    position: absolute;
-    bottom: 30px;
-    left: -200px;
-    width: 120px;
-    z-index: 11;
-    pointer-events: none;
-    animation: peekCycle 40s ease-in-out infinite;
-    animation-delay: 10s;
-}
-
-.disney-char-static {
-    width: 100%;
-}
-
-/* Animações */
 .move-l-to-r {
     animation: crossScreen 40s linear infinite;
 }
 
 .move-r-to-l {
     animation: crossScreenReverse 40s linear infinite;
-    transform: scaleX(-1); /* Espelha Donald e Pluto */
+    transform: scaleX(-1);
+}
+
+.minnie-wrapper {
+    animation: peekCycle 40s ease-in-out infinite;
 }
 
 @keyframes crossScreen {
@@ -155,7 +160,7 @@
     5% {
         left: -40px;
     }
-    /* Narizinho apenas */
+
     10% {
         left: -40px;
     }
@@ -169,11 +174,11 @@
     }
 }
 
-.chalk-heart { 
+/* CORAÇÕES DE GIZ */
+.chalk-heart {
     position: absolute;
     width: 80px;
     height: 80px;
-    /* Atenção: O arquivo tem que ser coracao-giz.gif */
     background-image: url('img/coracao-giz.gif');
     background-size: contain;
     background-repeat: no-repeat;

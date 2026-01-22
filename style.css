@@ -70,11 +70,11 @@ body {
 .char-wrapper {
     position: absolute;
     bottom: 20px;
-    left: -300px;
     z-index: 5;
     pointer-events: none;
-    /* MUDANÇA AQUI: De 20s para 40s (Ficam 2x mais lentos) */
-    animation-duration: 130s;
+    /* O SEGREDO DO LOOP PERFEITO: */
+    /* Todos duram 34s. O tempo de movimento é controlado nas % dos keyframes */
+    animation-duration: 34s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
 }
@@ -85,112 +85,135 @@ body {
     display: block;
 }
 
-/* CLASSE PARA ESPELHAR */
+/* CLASSE PARA ESPELHAR (Donald e Pluto) */
 .mirror {
     transform: scaleX(-1);
 }
 
 
-/* --- CONFIGURAÇÃO INDIVIDUAL (Novos Delays) --- */
-/* Como o ciclo agora é 40s, dividimos por 4 personagens = 10s cada */
+/* --- CONFIGURAÇÃO INDIVIDUAL --- */
+/* Cada um chama sua própria animação customizada */
 
-/* 1. Mickey (0s) */
+/* 1. Mickey: Entra em 0s, dura 10s */
 .mickey-wrapper {
     width: 130px;
     bottom: 40px;
-    animation-name: runLeftToRight;
-    animation-delay: 10s;
+    left: -300px; /* Posição inicial fora da tela */
+    animation-name: cronogramaMickey;
 }
 
-/* 2. Minnie (10s) - Antes era 5s */
+/* 2. Minnie: Entra em 11s, dura 3s */
 .minnie-wrapper {
     width: 120px;
     bottom: 30px;
-    animation-name: peekLeft;
-    animation-delay: 20s;
+    left: -200px; /* Posição inicial fora da tela */
+    animation-name: cronogramaMinnie;
 }
 
-/* 3. Donald (20s) - Antes era 10s */
+/* 3. Donald: Entra em 15s, dura 7s */
 .donald-wrapper {
     width: 140px;
     bottom: 25px;
-    animation-name: runRightToLeft;
-    animation-delay: 40s;
+    left: 110vw; /* Posição inicial na DIREITA (fora da tela) */
+    animation-name: cronogramaDonald;
 }
 
-/* 4. Pluto (30s) - Antes era 15s */
+/* 4. Pluto: Entra em 23s, dura 10s */
 .pluto-wrapper {
-    width: 150px; 
+    width: 150px;
     bottom: 20px;
-    animation-name: runRightToLeft;
-    animation-delay: 60s;
+    left: 110vw; /* Posição inicial na DIREITA (fora da tela) */
+    animation-name: cronogramaPluto;
 }
 
 
-/* --- AS ANIMAÇÕES (KEYFRAMES) --- */
+/* --- AS ANIMAÇÕES (LINHA DO TEMPO) --- */
+/* Total do Ciclo: 34 segundos */
 
-/* Corre da Esquerda -> Direita */
-@keyframes runLeftToRight {
+/* MICKEY (0s a 10s) - Velocidade Lenta */
+@keyframes cronogramaMickey {
     0% {
         left: -300px;
     }
-    /* Começa fora na esquerda */
-    20% {
+    /* 0s: Começa */
+    29% {
         left: 110vw;
     }
-    /* Chega no final da direita (rápido) */
+    /* 10s: Terminou de atravessar (10/34 = 29%) */
     100% {
         left: 110vw;
     }
-    /* Fica esperando lá longe até acabar os 20s */
+    /* Fica esperando lá longe até dar 34s */
 }
 
-/* Corre da Direita -> Esquerda */
-@keyframes runRightToLeft {
-    0% {
-        left: -300px;
-        opacity: 0;
-    }
-    /* Hack: Fica invisível na esquerda enquanto espera */
-    0.1% {
-        left: 110vw;
-        opacity: 1;
-    }
-    /* Pula pra direita instantaneamente pra começar */
-    20% {
-        left: -300px;
-        opacity: 1;
-    }
-    /* Chega na esquerda */
-    100% {
-        left: -300px;
-        opacity: 1;
-    }
-    /* Fica esperando */
-}
-
-/* Minnie Espiando */
-@keyframes peekLeft {
+/* MINNIE (11s a 14s) - Espiadinha Rápida */
+@keyframes cronogramaMinnie {
     0% {
         left: -200px;
     }
-
-    5% {
-        left: 0px;
+    /* 0s a 11s: Escondida */
+    32% {
+        left: -200px;
     }
-    /* Entra */
-    15% {
-        left: 50px;
+    /* 11s: Começa a aparecer (11/34 = 32%) */
+    33% {
+        left: -40px;
     }
-    /* Fica */
-    20% {
-        left: 50px;
+    /* Entra rápido */
+    39% {
+        left: -40px;
     }
-    /* Sai */
+    /* Fica parada um pouco */
+    41% {
+        left: -200px;
+    }
+    /* 14s: Foi embora (14/34 = 41%) */
     100% {
         left: -200px;
+    }
+    /* Espera até o fim */
+}
+
+/* DONALD (15s a 22s) - Corrida Rápida (Dir -> Esq) */
+@keyframes cronogramaDonald {
+    0% {
+        left: 110vw;
+        opacity: 1;
+    }
+    /* Esperando na direita */
+    44% {
+        left: 110vw;
+    }
+    /* 15s: Hora de entrar (15/34 = 44%) */
+    64% {
+        left: -300px;
+    }
+    /* 22s: Chegou na esquerda (22/34 = 64%) */
+    100% {
+        left: -300px;
     }
     /* Espera */
+}
+
+/* PLUTO (23s a 33s) - Caminhada Lenta (Dir -> Esq) */
+@keyframes cronogramaPluto {
+    0% {
+        left: 110vw;
+        opacity: 1;
+    }
+    /* Esperando na direita */
+    67% {
+        left: 110vw;
+    }
+    /* 23s: Hora de entrar (23/34 = 67%) */
+    97% {
+        left: -300px;
+    }
+    /* 33s: Chegou na esquerda (33/34 = 97%) */
+    100% {
+        left: -300px;
+    }
+    /* Fim do ciclo */
 }
 
 

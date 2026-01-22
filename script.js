@@ -10,9 +10,9 @@ const photos = [
 
 // LEGENDAS
 const captions = [
-    "Um início...",
+    "Um inicio...",
     "Uma conexao magica...",
-    "Momentos inesquecíveis...",
+    "Momentos inesqueciveis...",
     "Quero estar contigo...",
     "Sempre juntos...",
     "Para todo o sempre!"

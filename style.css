@@ -88,7 +88,7 @@ body {
 
 /* --- CONFIGURAÇÃO INDIVIDUAL --- */
 
-/* 1. Mickey: Entra em 0s, dura 10s */
+/* 1. Mickey: (Não muda nada) */
 .mickey-wrapper {
     width: 130px;
     bottom: 40px;
@@ -96,7 +96,7 @@ body {
     animation-name: cronogramaMickey;
 }
 
-/* 2. Minnie: Entra em 11s, dura 3s */
+/* 2. Minnie: (Não muda nada) */
 .minnie-wrapper {
     width: 120px;
     bottom: 30px;
@@ -111,6 +111,11 @@ body {
     left: -300px;
     animation-name: cronogramaDonald;
 }
+    /* AQUI ESTÁ O PULO DO GATO: */
+    /* Força a imagem dentro do wrapper do Donald a virar para o outro lado */
+    .donald-wrapper .char-img {
+        transform: scaleX(-1);
+    }
 
 /* 4. Pluto: Entra em 23s, dura 10s */
 .pluto-wrapper {
@@ -119,7 +124,11 @@ body {
     left: -300px;
     animation-name: cronogramaPluto;
 }
-
+    /* AQUI TAMBÉM: */
+    /* Força a imagem dentro do wrapper do Pluto a virar para o outro lado */
+    .pluto-wrapper .char-img {
+        transform: scaleX(-1);
+    }
 
 /* --- AS ANIMAÇÕES (LINHA DO TEMPO 34s) --- */
 

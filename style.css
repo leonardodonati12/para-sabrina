@@ -16,6 +16,27 @@ body {
     align-items: center;
 }
 
+/* --- MENSAGEM DE INSTRUÇÃO (NOVA) --- */
+.instruction-text {
+    position: absolute;
+    top: 5%; /* Fica no topo da tela */
+    width: 90%; /* Ocupa quase toda a largura */
+    text-align: center;
+    color: #d32f2f; /* Vermelho forte (combinando com o fio do coração) */
+    font-size: 1.5rem; /* Tamanho bom de ler */
+    z-index: 50; /* Fica na frente dos personagens e do fundo */
+    pointer-events: none; /* Não atrapalha o clique se tiver coração embaixo */
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8); /* Sombra branca pra ler melhor */
+}
+
+/* Ajuste para celular (se a tela for pequena, diminui a letra) */
+@media (max-width: 600px) {
+    .instruction-text {
+        font-size: 1.1rem;
+        top: 8%;
+    }
+}
+
 /* CENTRO */
 .center-stage {
     position: relative;

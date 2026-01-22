@@ -74,7 +74,7 @@ body {
     z-index: 5;
     pointer-events: none;
     /* MUDANÇA AQUI: De 20s para 40s (Ficam 2x mais lentos) */
-    animation-duration: 40s;
+    animation-duration: 130s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
 }
@@ -99,7 +99,7 @@ body {
     width: 130px;
     bottom: 40px;
     animation-name: runLeftToRight;
-    animation-delay: 5s;
+    animation-delay: 10s;
 }
 
 /* 2. Minnie (10s) - Antes era 5s */
@@ -172,19 +172,19 @@ body {
 /* Minnie Espiando */
 @keyframes peekLeft {
     0% {
-        left: -100px;
+        left: -200px;
     }
 
     5% {
-        left: -5px;
+        left: 0px;
     }
     /* Entra */
     15% {
-        left: -5px;
+        left: 50px;
     }
     /* Fica */
     20% {
-        left: -5px;
+        left: 50px;
     }
     /* Sai */
     100% {

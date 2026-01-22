@@ -70,11 +70,11 @@ body {
 .char-wrapper {
     position: absolute;
     bottom: 20px;
-    left: -300px; /* Posição de espera padrão (Esquerda) */
+    left: -300px;
     z-index: 5;
     pointer-events: none;
-    /* Configuração do Loop: Todos duram 20s */
-    animation-duration: 20s;
+    /* MUDANÇA AQUI: De 20s para 40s (Ficam 2x mais lentos) */
+    animation-duration: 40s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
 }
@@ -85,15 +85,16 @@ body {
     display: block;
 }
 
-/* CLASSE PARA ESPELHAR (Donald e Pluto) */
+/* CLASSE PARA ESPELHAR */
 .mirror {
     transform: scaleX(-1);
 }
 
 
-/* --- CONFIGURAÇÃO INDIVIDUAL --- */
+/* --- CONFIGURAÇÃO INDIVIDUAL (Novos Delays) --- */
+/* Como o ciclo agora é 40s, dividimos por 4 personagens = 10s cada */
 
-/* 1. Mickey (0s) - Corre da Esq pra Dir */
+/* 1. Mickey (0s) */
 .mickey-wrapper {
     width: 130px;
     bottom: 40px;
@@ -101,28 +102,28 @@ body {
     animation-delay: 0s;
 }
 
-/* 2. Minnie (5s) - Espia na Esq */
+/* 2. Minnie (10s) - Antes era 5s */
 .minnie-wrapper {
     width: 120px;
     bottom: 30px;
     animation-name: peekLeft;
-    animation-delay: 5s;
+    animation-delay: 10s;
 }
 
-/* 3. Donald (10s) - Corre da Dir pra Esq */
+/* 3. Donald (20s) - Antes era 10s */
 .donald-wrapper {
     width: 140px;
     bottom: 25px;
     animation-name: runRightToLeft;
-    animation-delay: 10s;
+    animation-delay: 20s;
 }
 
-/* 4. Pluto (15s) - Corre da Dir pra Esq */
+/* 4. Pluto (30s) - Antes era 15s */
 .pluto-wrapper {
-    width: 150px;
+    width: 150px; 
     bottom: 20px;
     animation-name: runRightToLeft;
-    animation-delay: 15s;
+    animation-delay: 30s;
 }
 
 

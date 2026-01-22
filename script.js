@@ -8,7 +8,7 @@ const photos = [
     'img/foto6.jpg'
 ];
 
-// LEGENDAS
+// LEGENDAS ALTERADAS
 const captions = [
     "Um inicio...",
     "Uma conexao magica...",

@@ -157,11 +157,11 @@ body {
     }
     /* 11s: Começa a aparecer (11/34 = 32%) */
     33% {
-        left: -40px;
+        left: -10px;
     }
     /* Entra rápido */
     39% {
-        left: -40px;
+        left: 20px;
     }
     /* Fica parada um pouco */
     41% {
@@ -174,44 +174,44 @@ body {
     /* Espera até o fim */
 }
 
-/* DONALD (15s a 22s) - Corrida Rápida (Dir -> Esq) */
+/* DONALD (15s a 22s) - Corrida Rápida (Dir <- Esq) */
 @keyframes cronogramaDonald {
     0% {
-        left: 110vw;
+        right: 110vw;
         opacity: 1;
     }
     /* Esperando na direita */
     44% {
-        left: 110vw;
+        right: 110vw;
     }
     /* 15s: Hora de entrar (15/34 = 44%) */
     64% {
-        left: -300px;
+        right: -300px;
     }
     /* 22s: Chegou na esquerda (22/34 = 64%) */
     100% {
-        left: -300px;
+        right: -300px;
     }
     /* Espera */
 }
 
-/* PLUTO (23s a 33s) - Caminhada Lenta (Dir -> Esq) */
+/* PLUTO (23s a 33s) - Caminhada Lenta (Dir <- Esq) */
 @keyframes cronogramaPluto {
     0% {
-        left: 110vw;
+        right: 110vw;
         opacity: 1;
     }
     /* Esperando na direita */
     67% {
-        left: 110vw;
+        right: 110vw;
     }
     /* 23s: Hora de entrar (23/34 = 67%) */
     97% {
-        left: -300px;
+        right: -300px;
     }
     /* 33s: Chegou na esquerda (33/34 = 97%) */
     100% {
-        left: -300px;
+        right: -300px;
     }
     /* Fim do ciclo */
 }

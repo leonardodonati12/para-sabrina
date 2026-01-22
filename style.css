@@ -169,12 +169,11 @@
     }
 }
 
-/* --- CORAÇÕES DE GIZ --- */
 .chalk-heart {
     position: absolute;
     width: 80px;
     height: 80px;
-    /* Certifique-se que o nome do GIF do coração está assim na pasta img */
+    /* Atenção: O arquivo tem que ser coracao-giz.gif */
     background-image: url('img/coracao-giz.gif');
     background-size: contain;
     background-repeat: no-repeat;
@@ -182,7 +181,7 @@
     z-index: 20;
     animation: popIn 0.5s ease-out;
     filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.2));
-    transform: none !important; /* Sem rotação */
+    transform: none !important;
 }
 
     .chalk-heart:hover {

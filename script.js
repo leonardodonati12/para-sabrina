@@ -1,5 +1,4 @@
-// LISTA DE FOTOS
-// Verifique se os nomes e extensões (.jpg/.png) estão IGUAIS aos da pasta
+// LISTA DE FOTOS (Certifique-se que elas existem na pasta img)
 const photos = [
     'img/foto1.jpg',
     'img/foto2.jpg',
@@ -9,7 +8,7 @@ const photos = [
     'img/foto6.jpg'
 ];
 
-// LEGENDAS (Uma para cada foto)
+// LEGENDAS
 const captions = [
     "Onde tudo começou...",
     "Nosso melhor sorriso...",
@@ -26,20 +25,20 @@ const polaroidImage = document.getElementById('polaroidImage');
 const polaroidDate = document.getElementById('polaroidDate');
 
 function spawnHeart() {
-    // 1. Limite de 2 corações
+    // 1. Limite de 2 corações simultâneos
     const currentHearts = document.querySelectorAll('.chalk-heart');
     if (currentHearts.length >= 2) return;
 
     const heart = document.createElement('div');
     heart.classList.add('chalk-heart');
 
-    // 2. Zonas Laterais + Limite Inferior
+    // 2. Zonas Laterais (Esquerda e Direita apenas)
     const zone = Math.random() < 0.5 ? 'left' : 'right';
     let x, y;
 
     const padding = 50;
-    const bottomLimitBuffer = 150;
-    const zoneWidth = window.innerWidth * 0.25;
+    const bottomLimitBuffer = 150; // Respeita o chão dos personagens
+    const zoneWidth = window.innerWidth * 0.25; // Zona ocupa 25% da lateral
 
     if (zone === 'left') {
         x = Math.random() * (zoneWidth - padding) + padding;
@@ -62,6 +61,7 @@ function spawnHeart() {
 
     gameArea.appendChild(heart);
 
+    // Tempo de vida do coração
     setTimeout(() => {
         if (heart.parentElement) {
             heart.style.transition = "opacity 0.5s";
@@ -79,7 +79,6 @@ function showPhoto() {
 
     modal.classList.remove('hidden');
 
-    // Passa para a próxima foto
     photoIndex = (photoIndex + 1) % photos.length;
 }
 

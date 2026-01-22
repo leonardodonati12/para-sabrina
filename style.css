@@ -70,10 +70,10 @@ body {
 .char-wrapper {
     position: absolute;
     bottom: 20px;
+    left: -300px; /* Posição de espera padrão (Esquerda) */
     z-index: 5;
     pointer-events: none;
-    /* O SEGREDO DO LOOP PERFEITO: */
-    /* Todos duram 34s. O tempo de movimento é controlado nas % dos keyframes */
+    /* CICLO DE 34 SEGUNDOS */
     animation-duration: 34s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
@@ -87,13 +87,12 @@ body {
 
 
 /* --- CONFIGURAÇÃO INDIVIDUAL --- */
-/* Cada um chama sua própria animação customizada */
 
 /* 1. Mickey: Entra em 0s, dura 10s */
 .mickey-wrapper {
     width: 130px;
     bottom: 40px;
-    left: -300px; /* Posição inicial fora da tela */
+    left: -300px;
     animation-name: cronogramaMickey;
 }
 
@@ -101,7 +100,7 @@ body {
 .minnie-wrapper {
     width: 120px;
     bottom: 30px;
-    left: -200px; /* Posição inicial fora da tela */
+    left: -200px;
     animation-name: cronogramaMinnie;
 }
 
@@ -109,7 +108,7 @@ body {
 .donald-wrapper {
     width: 140px;
     bottom: 25px;
-    right: 110vw; /* Posição inicial na DIREITA (fora da tela) */
+    left: -300px;
     animation-name: cronogramaDonald;
 }
 
@@ -117,96 +116,92 @@ body {
 .pluto-wrapper {
     width: 150px;
     bottom: 20px;
-    right: 110vw; /* Posição inicial na DIREITA (fora da tela) */
+    left: -300px;
     animation-name: cronogramaPluto;
 }
 
 
-/* --- AS ANIMAÇÕES (LINHA DO TEMPO) --- */
-/* Total do Ciclo: 34 segundos */
+/* --- AS ANIMAÇÕES (LINHA DO TEMPO 34s) --- */
 
-/* MICKEY (0s a 10s) - Velocidade Lenta */
+/* MICKEY (0s a 10s) - Esq -> Dir */
 @keyframes cronogramaMickey {
     0% {
         left: -300px;
     }
-    /* 0s: Começa */
+
     29% {
         left: 110vw;
     }
-    /* 10s: Terminou de atravessar (10/34 = 29%) */
+    /* 10s: Chegou na direita */
     100% {
         left: 110vw;
     }
-    /* Fica esperando lá longe até dar 34s */
+    /* Espera na direita */
 }
 
-/* MINNIE (11s a 14s) - Espiadinha Rápida */
+/* MINNIE (11s a 14s) - Espiadinha (Mais pra dentro da tela) */
 @keyframes cronogramaMinnie {
     0% {
-        left: -80px;
+        left: -200px;
     }
-    /* 0s a 11s: Escondida */
+
     32% {
-        left: -80px;
+        left: -200px;
     }
-    /* 11s: Começa a aparecer (11/34 = 32%) */
+    /* 11s: Prepara */
     33% {
-        left: 35px;
+        left: 0px;
     }
-    /* Entra rápido */
+    /* Entra até 0px (aparece bem) */
     39% {
-        left: 35px;
+        left: 0px;
     }
-    /* Fica parada um pouco */
+    /* Fica parada */
     41% {
-        left: -100px;
+        left: -200px;
     }
-    /* 14s: Foi embora (14/34 = 41%) */
+    /* 14s: Sai */
     100% {
-        left: -100px;
+        left: -200px;
     }
-    /* Espera até o fim */
 }
 
-/* DONALD (15s a 22s) - Corrida Rápida (Dir <- Esq) */
+/* DONALD (15s a 22s) - Esq -> Dir (Corrida) */
 @keyframes cronogramaDonald {
     0% {
-        right: 110vw;
-        opacity: 1;
+        left: -300px;
     }
-    /* Esperando na direita */
+    /* Espera na esquerda */
     44% {
-        right: 110vw;
+        left: -300px;
     }
-    /* 15s: Hora de entrar (15/34 = 44%) */
+    /* 15s: Hora de sair */
     64% {
-        right: -300px;
+        left: 110vw;
     }
-    /* 22s: Chegou na esquerda (22/34 = 64%) */
+    /* 22s: Chegou na direita */
     100% {
-        right: -300px;
+        left: 110vw;
     }
-    /* Espera */
+    /* Espera na direita */
 }
 
-/* PLUTO (23s a 33s) - Caminhada Lenta (Dir <- Esq) */
+/* PLUTO (23s a 33s) - Esq -> Dir (Caminhada) */
 @keyframes cronogramaPluto {
     0% {
-        right: 110vw;
-        opacity: 1;
+        left: -300px;
     }
-    /* Esperando na direita */
+    /* Espera na esquerda */
     67% {
-        right: 110vw;
+        left: -300px;
     }
-    /* 23s: Hora de entrar (23/34 = 67%) */
+    /* 23s: Hora de sair */
     97% {
-        right: -300px;
+        left: 110vw;
     }
-    /* 33s: Chegou na esquerda (33/34 = 97%) */
+    /* 33s: Chegou na direita */
     100% {
-        right: -300px;
+        left: 110vw;
     }
     /* Fim do ciclo */
 }

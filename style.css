@@ -88,7 +88,7 @@ body {
 
 /* --- CONFIGURAÇÃO INDIVIDUAL --- */
 
-/* 1. Mickey: (Não muda nada) */
+/* 1. Mickey: (Mantém igual - Esq -> Dir) */
 .mickey-wrapper {
     width: 130px;
     bottom: 40px;
@@ -96,7 +96,7 @@ body {
     animation-name: cronogramaMickey;
 }
 
-/* 2. Minnie: (Não muda nada) */
+/* 2. Minnie: (Mantém igual - Esq -> Dir) */
 .minnie-wrapper {
     width: 120px;
     bottom: 30px;
@@ -104,35 +104,30 @@ body {
     animation-name: cronogramaMinnie;
 }
 
-/* 3. Donald: Entra em 15s, dura 7s */
+/* 3. Donald: Entra em 15s (Direita -> Esquerda) */
 .donald-wrapper {
     width: 140px;
     bottom: 25px;
-    left: -300px;
+    /* MUDANÇA: Começa esperando na DIREITA */
+    left: 110vw;
     animation-name: cronogramaDonald;
 }
-    /* AQUI ESTÁ O PULO DO GATO: */
-    /* Força a imagem dentro do wrapper do Donald a virar para o outro lado */
-    .donald-wrapper .char-img {
-        transform: scaleX(-1);
-    }
+/* REMOVI O ESPELHAMENTO AQUI */
 
-/* 4. Pluto: Entra em 23s, dura 10s */
+/* 4. Pluto: Entra em 23s (Direita -> Esquerda) */
 .pluto-wrapper {
     width: 150px;
     bottom: 20px;
-    left: -300px;
+    /* MUDANÇA: Começa esperando na DIREITA */
+    left: 110vw;
     animation-name: cronogramaPluto;
 }
-    /* AQUI TAMBÉM: */
-    /* Força a imagem dentro do wrapper do Pluto a virar para o outro lado */
-    .pluto-wrapper .char-img {
-        transform: scaleX(-1);
-    }
+/* REMOVI O ESPELHAMENTO AQUI */
+
 
 /* --- AS ANIMAÇÕES (LINHA DO TEMPO 34s) --- */
 
-/* MICKEY (0s a 10s) - Esq -> Dir */
+/* MICKEY (Igual) */
 @keyframes cronogramaMickey {
     0% {
         left: -300px;
@@ -141,14 +136,13 @@ body {
     29% {
         left: 110vw;
     }
-    /* 10s: Chegou na direita */
+
     100% {
         left: 110vw;
     }
-    /* Espera na direita */
 }
 
-/* MINNIE (11s a 14s) - Espiadinha (Mais pra dentro da tela) */
+/* MINNIE (Igual) */
 @keyframes cronogramaMinnie {
     0% {
         left: -200px;
@@ -157,64 +151,63 @@ body {
     32% {
         left: -200px;
     }
-    /* 11s: Prepara */
+
     33% {
         left: 0px;
     }
-    /* Entra até 0px (aparece bem) */
+
     39% {
         left: 0px;
     }
-    /* Fica parada */
+
     41% {
         left: -200px;
     }
-    /* 14s: Sai */
+
     100% {
         left: -200px;
     }
 }
 
-/* DONALD (15s a 22s) - Esq -> Dir (Corrida) */
+/* DONALD (15s a 22s) - Direita -> Esquerda */
 @keyframes cronogramaDonald {
     0% {
-        left: -300px;
-    }
-    /* Espera na esquerda */
-    44% {
-        left: -300px;
-    }
-    /* 15s: Hora de sair */
-    64% {
-        left: 110vw;
-    }
-    /* 22s: Chegou na direita */
-    100% {
         left: 110vw;
     }
     /* Espera na direita */
-}
-
-/* PLUTO (23s a 33s) - Esq -> Dir (Caminhada) */
-@keyframes cronogramaPluto {
-    0% {
+    44% {
+        left: 110vw;
+    }
+    /* 15s: Hora de sair */
+    64% {
+        left: -300px;
+    }
+    /* 22s: Chegou na esquerda */
+    100% {
         left: -300px;
     }
     /* Espera na esquerda */
+}
+
+/* PLUTO (23s a 33s) - Direita -> Esquerda */
+@keyframes cronogramaPluto {
+    0% {
+        left: 110vw;
+    }
+    /* Espera na direita */
     67% {
-        left: -300px;
+        left: 110vw;
     }
     /* 23s: Hora de sair */
     97% {
-        left: 110vw;
+        left: -300px;
     }
-    /* 33s: Chegou na direita */
+    /* 33s: Chegou na esquerda */
     100% {
-        left: 110vw;
+        left: -300px;
     }
     /* Fim do ciclo */
 }
-
 
 /* --- RESTO DO CÓDIGO (Corações e Modal) --- */
 .chalk-heart {

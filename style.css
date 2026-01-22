@@ -36,18 +36,10 @@ body {
 /* Ajuste para celular */
 @media (max-width: 600px) {
     .instruction-text {
-        font-size: 0.8rem; /* Ainda menor no celular */
+        font-size: 0.25rem; /* Ainda menor no celular */
         top: 18%; /* Um pouco mais pra baixo no celular */
     }
-}
-
-/* Ajuste para celular (se a tela for pequena, diminui a letra) */
-@media (max-width: 600px) {
-    .instruction-text {
-        font-size: 1.1rem;
-        top: 8%;
-    }
-}
+} 
 
 /* CENTRO */
 .center-stage {

@@ -85,11 +85,6 @@ body {
     display: block;
 }
 
-/* CLASSE PARA ESPELHAR (Donald e Pluto) */
-.mirror {
-    transform: scaleX(-1);
-}
-
 
 /* --- CONFIGURAÇÃO INDIVIDUAL --- */
 /* Cada um chama sua própria animação customizada */
@@ -149,27 +144,27 @@ body {
 /* MINNIE (11s a 14s) - Espiadinha Rápida */
 @keyframes cronogramaMinnie {
     0% {
-        left: -200px;
+        left: -80px;
     }
     /* 0s a 11s: Escondida */
     32% {
-        left: -200px;
+        left: -80px;
     }
     /* 11s: Começa a aparecer (11/34 = 32%) */
     33% {
-        left: 20px;
+        left: 35px;
     }
     /* Entra rápido */
     39% {
-        left: 20px;
+        left: 35px;
     }
     /* Fica parada um pouco */
     41% {
-        left: -200px;
+        left: -100px;
     }
     /* 14s: Foi embora (14/34 = 41%) */
     100% {
-        left: -200px;
+        left: -100px;
     }
     /* Espera até o fim */
 }

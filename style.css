@@ -99,7 +99,7 @@ body {
     width: 130px;
     bottom: 40px;
     animation-name: runLeftToRight;
-    animation-delay: 0s;
+    animation-delay: 5s;
 }
 
 /* 2. Minnie (10s) - Antes era 5s */
@@ -107,7 +107,7 @@ body {
     width: 120px;
     bottom: 30px;
     animation-name: peekLeft;
-    animation-delay: 10s;
+    animation-delay: 20s;
 }
 
 /* 3. Donald (20s) - Antes era 10s */
@@ -115,7 +115,7 @@ body {
     width: 140px;
     bottom: 25px;
     animation-name: runRightToLeft;
-    animation-delay: 20s;
+    animation-delay: 40s;
 }
 
 /* 4. Pluto (30s) - Antes era 15s */
@@ -123,7 +123,7 @@ body {
     width: 150px; 
     bottom: 20px;
     animation-name: runRightToLeft;
-    animation-delay: 30s;
+    animation-delay: 60s;
 }
 
 
@@ -172,19 +172,19 @@ body {
 /* Minnie Espiando */
 @keyframes peekLeft {
     0% {
-        left: -200px;
+        left: -100px;
     }
 
     5% {
-        left: -40px;
+        left: -5px;
     }
     /* Entra */
     15% {
-        left: -40px;
+        left: -5px;
     }
     /* Fica */
     20% {
-        left: -200px;
+        left: -5px;
     }
     /* Sai */
     100% {

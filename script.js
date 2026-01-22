@@ -16,7 +16,7 @@ const captions = [
     "Quero estar contigo...",
     "Sempre juntos...",
     "Para todo o sempre!"
-];
+]; 
 
 let photoIndex = 0;
 const gameArea = document.getElementById('gameArea');

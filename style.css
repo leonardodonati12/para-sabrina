@@ -1,100 +1,175 @@
-﻿/* --- PERSONAGENS --- */
-.disney-char {
+﻿/* --- Configurações Gerais --- */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    overflow: hidden;
+    font-family: 'Architects Daughter', cursive;
+}
+
+.game-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* CENTRO */
+.center-stage {
+    position: relative;
+    width: 85vmin;
+    height: 85vmin;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+.dancing-couple {
     position: absolute;
+    width: 50%;
+    z-index: 11;
+    pointer-events: none;
+}
+
+.spinning-heart-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.trembling-svg {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    animation: doodleJitter 0.15s linear infinite alternate;
+}
+
+.sewing-thread-line {
+    fill: none;
+    stroke: #d32f2f;
+    stroke-width: 6;
+    stroke-linecap: round;
+    stroke-dasharray: 15 10;
+    filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.2));
+}
+
+@keyframes doodleJitter {
+    0% {
+        transform: scale(1) translate(0,0);
+    }
+
+    100% {
+        transform: scale(1.01) translate(1px, -1px);
+    }
+}
+
+/* --- PERSONAGENS (WRAPPERS) --- */
+.char-wrapper {
+    position: absolute;
+    bottom: 20px;
+    left: -300px; /* Posição de espera padrão (Esquerda) */
     z-index: 5;
     pointer-events: none;
-    bottom: 20px;
-    left: -300px; /* Começam escondidos */
-    /* O SEGREDO DO LOOP: Todos têm a mesma duração total (20s) */
+    /* Configuração do Loop: Todos duram 20s */
     animation-duration: 20s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
 }
 
-/* --- ORDEM DE APARIÇÃO (Delays) --- */
-/* Mickey entra na hora (0s) */
-.mickey-style {
+/* Garante que a imagem encha a caixinha */
+.char-img {
+    width: 100%;
+    display: block;
+}
+
+/* CLASSE PARA ESPELHAR (Donald e Pluto) */
+.mirror {
+    transform: scaleX(-1);
+}
+
+
+/* --- CONFIGURAÇÃO INDIVIDUAL --- */
+
+/* 1. Mickey (0s) - Corre da Esq pra Dir */
+.mickey-wrapper {
     width: 130px;
     bottom: 40px;
-    animation-name: crossScreenNormal;
+    animation-name: runLeftToRight;
     animation-delay: 0s;
 }
 
-/* Minnie entra depois de 5s */
+/* 2. Minnie (5s) - Espia na Esq */
 .minnie-wrapper {
-    /* Wrapper é necessário para a Minnie pois ela tem animação de 'espiar' diferente */
-    animation-name: peekCycle;
-    animation-duration: 20s; /* Mesmo tempo total */
-    animation-delay: 5s;
-    /* Resetando posições para garantir */
-    position: absolute;
-    bottom: 30px;
-    left: -200px;
     width: 120px;
-    z-index: 6;
-    pointer-events: none;
+    bottom: 30px;
+    animation-name: peekLeft;
+    animation-delay: 5s;
 }
 
-/* Donald entra depois de 10s */
-.donald-style {
+/* 3. Donald (10s) - Corre da Dir pra Esq */
+.donald-wrapper {
     width: 140px;
     bottom: 25px;
-    animation-name: crossScreenReverse; /* Ele corre ao contrário */
+    animation-name: runRightToLeft;
     animation-delay: 10s;
 }
 
-/* Pluto entra depois de 15s */
-.pluto-style {
+/* 4. Pluto (15s) - Corre da Dir pra Esq */
+.pluto-wrapper {
     width: 150px;
     bottom: 20px;
-    animation-name: crossScreenReverse; /* Ele também */
+    animation-name: runRightToLeft;
     animation-delay: 15s;
 }
 
 
-/* --- ESPELHAMENTO (MIRROR) --- */
-/* Adicione esta classe nas tags <img> do Donald e Pluto no HTML */
-.mirror {
-    transform: scaleX(-1); /* Inverte a imagem horizontalmente */
-}
+/* --- AS ANIMAÇÕES (KEYFRAMES) --- */
 
-
-/* --- KEYFRAMES (As Animações) --- */
-
-/* Esquerda para Direita (Mickey) */
-@keyframes crossScreenNormal {
+/* Corre da Esquerda -> Direita */
+@keyframes runLeftToRight {
     0% {
         left: -300px;
     }
-    /* Começa fora */
+    /* Começa fora na esquerda */
     20% {
         left: 110vw;
     }
-    /* Atravessa a tela em 4 segundos (20% de 20s) */
+    /* Chega no final da direita (rápido) */
     100% {
         left: 110vw;
     }
-    /* Fica esperando fora o resto do tempo */
+    /* Fica esperando lá longe até acabar os 20s */
 }
 
-/* Direita para Esquerda (Donald e Pluto) */
-@keyframes crossScreenReverse {
+/* Corre da Direita -> Esquerda */
+@keyframes runRightToLeft {
     0% {
-        left: 110vw;
+        left: -300px;
+        opacity: 0;
     }
-    /* Começa na direita fora da tela */
+    /* Hack: Fica invisível na esquerda enquanto espera */
+    0.1% {
+        left: 110vw;
+        opacity: 1;
+    }
+    /* Pula pra direita instantaneamente pra começar */
     20% {
         left: -300px;
+        opacity: 1;
     }
-    /* Atravessa para a esquerda */
+    /* Chega na esquerda */
     100% {
         left: -300px;
+        opacity: 1;
     }
-    /* Fica esperando fora */
+    /* Fica esperando */
 }
 
 /* Minnie Espiando */
-@keyframes peekCycle {
+@keyframes peekLeft {
     0% {
         left: -200px;
     }
@@ -102,17 +177,96 @@
     5% {
         left: -40px;
     }
-    /* Espia rápido */
+    /* Entra */
     15% {
         left: -40px;
     }
-    /* Fica um tempinho */
+    /* Fica */
     20% {
         left: -200px;
     }
-    /* Esconde */
+    /* Sai */
     100% {
         left: -200px;
     }
-    /* Espera o loop acabar */
+    /* Espera */
+}
+
+
+/* --- RESTO DO CÓDIGO (Corações e Modal) --- */
+.chalk-heart {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    background-image: url('img/coracao.gif');
+    background-size: contain;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    z-index: 20;
+    animation: popIn 0.5s ease-out;
+    filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.2));
+    transform: none !important;
+}
+
+    .chalk-heart:hover {
+        transform: scale(1.1) !important;
+    }
+
+@keyframes popIn {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    backdrop-filter: blur(4px);
+}
+
+.hidden {
+    display: none !important;
+}
+
+.polaroid-frame {
+    background: #fffdf2;
+    padding: 15px;
+    padding-bottom: 60px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    transform: rotate(-2deg);
+    max-width: 85%;
+}
+
+.photo-crop {
+    width: 300px;
+    height: 300px;
+    background: #000;
+    overflow: hidden;
+}
+
+    .photo-crop img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+.chalk-text {
+    font-size: 1.5rem;
+    margin-top: 20px;
+    color: #333;
+    text-align: center;
 }
